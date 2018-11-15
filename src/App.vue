@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-
-    <count></count>
-
-    <btnIncrement></btnIncrement>
-
     <div class="columns is-mobile is-centered">
       <div class="column is-half is-centered">
           <div id="newtodo">
@@ -23,37 +18,23 @@
 import Forminput from './components/Newtodo/Forminput'
 import Tasklist from './components/Task/Tasklist'
 
+import { mapActions } from 'vuex'
 
-const btnIncrement = {
-  template:`<button v-on:click='test'>increment</button>`,
-  methods: {
-    test(){
-      console.log('test')
-    }
-  }
-}
-
-const Count = {
-  name:"Count",
-  template:`<div>{{ count }}</div>`,
-  computed: {
-    count () {
-      return this.$store.state.count
-    }
-  }
-}
 
 export default {
-  name: 'app',
-  data () {
-    return {
-    }
+  data (){
+    return ({
+      num:0
+    })
   },
   components:{
-    Forminput,
     Tasklist,
-    Count,
-    btnIncrement
+    Forminput
+  },
+  methods:{
+    ...mapActions([
+      'increment'
+    ])
   }
 }
 

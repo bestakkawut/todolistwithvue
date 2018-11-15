@@ -2,32 +2,37 @@
     <section>
         <div>
             <b-field>
-                <b-input placeholder="Title"></b-input>
+                <b-input placeholder="Title" v-model="title"></b-input>
             </b-field>
             <b-field>
-                <b-input maxlength="200" type="textarea" placeholder="Message"></b-input>
+                <b-input v-model="message" maxlength="200" type="textarea" placeholder="Message"></b-input>
+            </b-field>
+            <b-field class="has-text-left">
+                <button class="button block" @click="addTodos">Add</button>
             </b-field>
         </div>
     </section>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                name: 'John Silver'
-            }
-        }
-    }
-</script>
-    </div>
-</template>
 
-<script>
+
 export default {
     name:'Forminput',
     data () {
-        return {}
+        return {
+            title:'',
+            message:''
+        }
+    },
+    methods:{
+        addTodos(){
+            this.$store.dispatch('add_todo',{
+                title:this.title,
+                msg:this.message,
+                complete:false
+            })
+        }
     }
 }
 </script>
